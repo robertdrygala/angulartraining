@@ -11,3 +11,12 @@ ng generate component CourseDashboard
 ng generate component Header 
 
 ng generate component Footer 
+
+
+ng g interface user-interface
+
+ng g class user-interface
+
+ng g pipe
+
+ng g directive
