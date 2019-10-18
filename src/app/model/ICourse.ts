@@ -1,4 +1,4 @@
-interface Course {
+interface ICourse {
     id: string;
     title: string;
     creationDate: Date;
