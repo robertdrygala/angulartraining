@@ -41,5 +41,9 @@ export class CourseDetailsComponent implements OnInit {
 
   public removeItem(item: CourseItem) {
     console.log('Item ' + item.title + ' has been removed....');
+    const index = this.todoItems.indexOf(item, 0);
+    if (index > -1) {
+        this.todoItems.splice(index, 1);
+      }
   }
 }
