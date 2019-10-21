@@ -8,26 +8,38 @@ import { CourseItem } from '../model/course-item';
 })
 export class CourseDetailsComponent implements OnInit {
 
-  @Input() public todoItems: any [] = [
-    {
-    id: '1',
-    title: 'First'
-    },
-    {
-    id: '2',
-    title: 'Second'
-    },
-    {
-    id: '3',
-    title: 'Third'
-    }
-];
+  todoItems: CourseItem [] = [];
 
   constructor() {
   }
 
   ngOnInit() {
-
+    this.todoItems = [
+      {
+      id: '1',
+      title: 'First',
+      creationDate : new Date(),
+      description: 'Descr',
+      duration: 1
+      },
+      {
+      id: '2',
+      title: 'Second',
+      creationDate : new Date(),
+      description: 'Descr',
+      duration: 1
+      },
+      {
+      id: '3',
+      title: 'Third',
+      creationDate : new Date(),
+      description: 'Descr',
+      duration: 1
+      }
+  ];
   }
 
+  public removeItem(item: CourseItem) {
+    console.log('Item ' + item.title + ' has been removed....');
+  }
 }
