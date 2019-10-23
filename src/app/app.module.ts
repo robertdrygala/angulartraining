@@ -9,18 +9,9 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { ListItemComponent } from './list-item/list-item.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    CourseDetailsComponent,
-    ListItemComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  declarations: [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent],
+  imports: [BrowserModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

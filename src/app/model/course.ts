@@ -1,9 +1,9 @@
 import { ICourse } from './course-interface';
 
 class Course implements ICourse {
-    id: string;
-    title: string;
-    creationDate: Date;
-    duration: number;
-    description: string;
+  id!: string;
+  title!: string;
+  creationDate!: Date;
+  duration!: number;
+  description!: string;
 }
