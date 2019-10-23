@@ -25,5 +25,6 @@
     },
     "[jsonc]": {
         "editor.defaultFormatter": "HookyQR.beautify"
-    }
+    },
+    "editor.formatOnSave": true
 }
