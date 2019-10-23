@@ -1,0 +1,29 @@
+{
+    "editor.renderWhitespace": "all",
+    "editor.wordWrap": "on",
+    "html.format.wrapAttributes": "force-aligned",
+    "prettier.printWidth": 120,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    }
+}

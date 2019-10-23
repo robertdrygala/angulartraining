@@ -12,9 +12,10 @@ export class ListItemComponent implements OnInit, OnChanges {
 
   @Output() removeItem = new EventEmitter<CourseItem>();
 
-  @Input() public todoItem: CourseItem;
+  @Input() public todoItem: CourseItem = new CourseItem();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

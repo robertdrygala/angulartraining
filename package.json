@@ -7,7 +7,13 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prettier": "prettier --config ./.prettierrc --list-different \"{projects/*/src,src/app}/**/*.{ts,js,css,less,json}\""
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "npm run prettier && npm run lint"
+    }
   },
   "private": true,
   "dependencies": {
@@ -19,7 +25,10 @@
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
+    "angular-tslint-rules": "^1.20.1",
+    "prettier": "^1.18.2",
     "rxjs": "~6.4.0",
+    "rxjs-tslint-rules": "^4.25.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
@@ -28,10 +37,11 @@
     "@angular/cli": "~8.3.12",
     "@angular/compiler-cli": "~8.2.11",
     "@angular/language-service": "~8.2.11",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "husky": "^3.0.9",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
