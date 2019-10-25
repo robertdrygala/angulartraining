@@ -1,6 +1,25 @@
+<section class="item.rectangle">
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <p class="item.video.course.one.name"
+         [textContent]="todoItem.title"></p>
+    </div>
+  </div>
 
-<h2 [textContent]="todoItem.title"></h2>
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <p class="item.learn.about.where.yo">{{todoItem.description}}</p>
+    </div>
+    <div class="form-group col-md-2">
+      <button type="button"
+              class="btn btn-outline-dark"
+              (click)="remove()">Delete</button>
+    </div>
+    <div class="form-group col-md-2">
+      <button type="button"
+              class="btn btn-outline-dark"
+              (click)="remove()">Edit</button>
+    </div>
+  </div>
 
-<button class="material-icons" (click)="remove()">Remove</button>
-
-
+</section>
