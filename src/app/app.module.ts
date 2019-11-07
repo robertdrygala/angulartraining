@@ -12,7 +12,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent],
   imports: [BrowserModule, AppRoutingModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
 })
