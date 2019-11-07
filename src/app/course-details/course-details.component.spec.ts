@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CourseDetailsComponent } from './course-details.component';
+import { CourseDetailsComponent, definition } from './course-details.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('CourseDetailsComponent', () => {
@@ -24,7 +24,28 @@ describe('CourseDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Shoud have a delault heading...', () => {
+  it('should have a defined items...', () => {
     fixture.detectChanges();
+    expect(component.todoItems.length).toEqual(3);
+  });
+
+  it('remove test fail', () => {
+    fixture.detectChanges();
+    component.removeItem({
+      id: '3',
+      title: definition.TITLE,
+      creationDate: new Date(),
+      description: definition.DESCRIPTION,
+      duration: 1,
+    });
+    fixture.detectChanges();
+    expect(component.todoItems.length).toEqual(3);
+  });
+
+  it('remove test', () => {
+    fixture.detectChanges();
+    component.removeItem(component.todoItems[0]);
+    fixture.detectChanges();
+    expect(component.todoItems.length).toEqual(2);
   });
 });
