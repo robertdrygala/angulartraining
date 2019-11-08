@@ -1,0 +1,67 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { CourseItem } from '../model/course-item';
+import { By } from '@angular/platform-browser';
+
+@Component({
+  template: `
+    <app-list-item [todoItem]="item" (removeItem)="removeItem($event)"></app-list-item>
+  `,
+})
+class ListItemHostComponent {
+  public item: CourseItem = {
+    id: '1',
+    title: 'title',
+    creationDate: new Date(),
+    description: 'def',
+    duration: 1,
+  };
+
+  public removedItem: any;
+
+  public removeItem(removedItem: CourseItem) {
+    this.removedItem = removedItem;
+  }
+}
+
+describe('ListItemComponent', () => {
+  let component: ListItemHostComponent;
+  let fixture: ComponentFixture<ListItemHostComponent>;
+  let item: CourseItem;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ListItemHostComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+    }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ListItemHostComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
+  it('should delete item', () => {
+    const expectedRemovedItemm = {
+      id: '1',
+      title: 'title',
+      creationDate: new Date(),
+      description: 'def',
+      duration: 1,
+    };
+
+    const removeButton = fixture.debugElement.query(By.css('button'));
+
+    console.log(fixture.nativeElement);
+
+    removeButton.triggerEventHandler('click', null);
+
+    expect(component.removedItem).toEqual(expectedRemovedItemm);
+  });
+});

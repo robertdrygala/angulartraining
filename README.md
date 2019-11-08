@@ -139,4 +139,12 @@ ng test
 
 ng test --no-watch --code-coverage
 
-# Nested components Tes
+# TestBed
+
+What should we test using TestBed approach.
+
+ngIf, ngFor , properties like disbled, hidden, @Output, @Input
+Components lifecycle hooks ( ngOnInit, ngOnDestroy )
+Pipes and how they affect DOM
+
+# Test host approach
