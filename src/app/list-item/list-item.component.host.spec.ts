@@ -28,7 +28,6 @@ class ListItemHostComponent {
 describe('ListItemComponent', () => {
   let component: ListItemHostComponent;
   let fixture: ComponentFixture<ListItemHostComponent>;
-  let item: CourseItem;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -56,11 +55,13 @@ describe('ListItemComponent', () => {
       duration: 1,
     };
 
-    const removeButton = fixture.debugElement.query(By.css('button'));
-
-    console.log(fixture.nativeElement);
-
-    removeButton.triggerEventHandler('click', null);
+    const nativeElement: HTMLElement = fixture.nativeElement;
+    const button = nativeElement.querySelector('button');
+    if (button) {
+      button.click();
+    } else {
+      console.log('Button is null : ' + button);
+    }
 
     expect(component.removedItem).toEqual(expectedRemovedItemm);
   });

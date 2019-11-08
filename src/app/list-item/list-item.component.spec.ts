@@ -27,6 +27,7 @@ describe('ListItemComponent', () => {
 
   it('should call remove', () => {
     const button = fixture.debugElement.query(By.css('button'));
+
     button.triggerEventHandler('click', null);
 
     expect(component.removeItem.hasError).toBeFalsy();
