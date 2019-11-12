@@ -4,11 +4,18 @@ import { ElementRef, Renderer2, Directive, Input } from '@angular/core';
   selector: '[appPlaceBorderHiglight]',
 })
 export class PlateBorderHiglightDirective {
+  SEC_WEEK = 1209600;
+
   @Input() set appPlaceBorderHiglight(condition: Date) {
     console.log('Provided date : ' + condition);
 
-    if (condition.getTime() > new Date().getTime()) {
-      this.el.nativeElement.style.border = '2px solid green';
+    let result = new Date().getTime() - condition.getTime();
+    console.log('Provided result : ' + result);
+    // tslint:disable-next-line: max-line-length
+    if (result > 0 && result / 1000 < this.SEC_WEEK) {
+      this.el.nativeElement.style.border = '3px solid green';
+    } else if (new Date().getTime() < condition.getTime()) {
+      this.el.nativeElement.style.border = '3px solid blue';
     } else {
       this.el.nativeElement.style.border = null;
     }

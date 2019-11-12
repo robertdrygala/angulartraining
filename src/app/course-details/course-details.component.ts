@@ -16,36 +16,44 @@ export class CourseDetailsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    let futureDate = new Date();
-    let year = futureDate.getFullYear();
-    futureDate.setFullYear(year + 1);
+    let oldCourse = new Date();
+    let year = oldCourse.getFullYear();
+    oldCourse.setFullYear(year - 1);
+
+    let futureCourse = new Date();
+    year = futureCourse.getFullYear();
+    futureCourse.setFullYear(year + 1);
+
+    let quiteANewOne = new Date();
+    let hour = quiteANewOne.getHours();
+    quiteANewOne.setHours(hour - 1);
 
     this.todoItems = [
       {
         id: '1',
         title: TITLE,
-        creationDate: futureDate,
+        creationDate: futureCourse,
         description: DESCRIPTION,
         duration: 1,
       },
       {
         id: '2',
         title: TITLE,
-        creationDate: new Date(),
+        creationDate: quiteANewOne,
         description: DESCRIPTION,
         duration: 1,
       },
       {
         id: '3',
         title: TITLE,
-        creationDate: futureDate,
+        creationDate: oldCourse,
         description: DESCRIPTION,
         duration: 1,
       },
       {
         id: '4',
         title: TITLE,
-        creationDate: new Date(),
+        creationDate: quiteANewOne,
         description: DESCRIPTION,
         duration: 1,
       },

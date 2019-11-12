@@ -1,4 +1,5 @@
-<section class="item.rectangle">
+<section class="item.rectangle"
+         [appPlaceBorderHiglight]="todoItem.creationDate">
   <div class="form-row">
     <div class="form-group col-md-3">
       <p class="item.video.course.one.name"
@@ -8,7 +9,7 @@
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <p [appPlaceBorderHiglight]="todoItem.creationDate">{{todoItem.description}}</p>
+      <p>{{todoItem.description}}</p>
     </div>
     <div class="form-group col-md-2">
       <button type="button"
