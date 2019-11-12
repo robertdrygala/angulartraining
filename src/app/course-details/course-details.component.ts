@@ -16,11 +16,15 @@ export class CourseDetailsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    let futureDate = new Date();
+    let year = futureDate.getFullYear();
+    futureDate.setFullYear(year + 1);
+
     this.todoItems = [
       {
         id: '1',
         title: TITLE,
-        creationDate: new Date(),
+        creationDate: futureDate,
         description: DESCRIPTION,
         duration: 1,
       },
@@ -33,6 +37,13 @@ export class CourseDetailsComponent implements OnInit {
       },
       {
         id: '3',
+        title: TITLE,
+        creationDate: futureDate,
+        description: DESCRIPTION,
+        duration: 1,
+      },
+      {
+        id: '4',
         title: TITLE,
         creationDate: new Date(),
         description: DESCRIPTION,
