@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 import { By } from '@angular/platform-browser';
+import { ListItemComponent } from './list-item.component';
 
 @Component({
   template: `
@@ -31,7 +32,7 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListItemHostComponent],
+      declarations: [ListItemHostComponent, ListItemComponent],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
@@ -47,7 +48,7 @@ describe('ListItemComponent', () => {
   });
 
   it('should delete item', () => {
-    const expectedRemovedItemm = {
+    const expectedRemovedItem = {
       id: '1',
       title: 'title',
       creationDate: new Date(),
@@ -63,6 +64,6 @@ describe('ListItemComponent', () => {
       console.log('Button is null : ' + button);
     }
 
-    expect(component.removedItem).toEqual(expectedRemovedItemm);
+    expect(component.removedItem.id).toEqual(expectedRemovedItem.id);
   });
 });
