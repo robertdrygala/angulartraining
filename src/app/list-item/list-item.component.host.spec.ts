@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { CourseItem } from '../model/course-item';
-import { By } from '@angular/platform-browser';
 import { ListItemComponent } from './list-item.component';
 
 @Component({
