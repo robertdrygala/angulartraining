@@ -73,9 +73,16 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   public calculateClass(item: CourseItem) {
-    return {
-      btn: true,
-      'btn-primary': true,
-    };
+    if (item.topRated) {
+      return {
+        'item.rectangle': false,
+        'item.rectangle.blue': true,
+      };
+    } else {
+      return {
+        'item.rectangle': true,
+        'item.rectangle.blue': false,
+      };
+    }
   }
 }
