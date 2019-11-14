@@ -2,9 +2,6 @@
     "editor.renderWhitespace": "all",
     "editor.wordWrap": "on",
     "html.format.wrapAttributes": "force-aligned",
-    "prettier.printWidth": 120,
-    "prettier.singleQuote": true,
-    "prettier.trailingComma": "es5",
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },

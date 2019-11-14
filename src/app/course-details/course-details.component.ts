@@ -35,6 +35,7 @@ export class CourseDetailsComponent implements OnInit {
         creationDate: futureCourse,
         description: DESCRIPTION,
         duration: 1,
+        topRated: true,
       },
       {
         id: '2',
@@ -42,6 +43,7 @@ export class CourseDetailsComponent implements OnInit {
         creationDate: quiteANewOne,
         description: DESCRIPTION,
         duration: 1,
+        topRated: false,
       },
       {
         id: '3',
@@ -49,6 +51,7 @@ export class CourseDetailsComponent implements OnInit {
         creationDate: oldCourse,
         description: DESCRIPTION,
         duration: 1,
+        topRated: true,
       },
       {
         id: '4',
@@ -56,6 +59,7 @@ export class CourseDetailsComponent implements OnInit {
         creationDate: quiteANewOne,
         description: DESCRIPTION,
         duration: 1,
+        topRated: false,
       },
     ];
   }
@@ -66,5 +70,12 @@ export class CourseDetailsComponent implements OnInit {
     if (index > -1) {
       this.todoItems.splice(index, 1);
     }
+  }
+
+  public calculateClass(item: CourseItem) {
+    return {
+      btn: true,
+      'btn-primary': true,
+    };
   }
 }
