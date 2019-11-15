@@ -1,14 +1,22 @@
 <section [appPlaceBorderHiglight]="todoItem.creationDate">
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-8">
       <p class="item.video.course.one.name"
-         [textContent]="todoItem.title"></p>
+         [textContent]="todoItem.title | uppercase"></p>
+    </div>
+    <div class="form-group col-md-2">
+      <p class="item.video.course.one.name"
+         [textContent]="todoItem.creationDate | date"></p>
+    </div>
+    <div class="form-group col-md-2">
+      <p class="item.video.course.one.name"
+         [textContent]="todoItem.duration | durationPipe"></p>
     </div>
   </div>
 
   <div class="form-row">
     <div class="form-group col-md-8">
-      <p>{{todoItem.description}}</p>
+      <p>{{todoItem.description | lowercase}}</p>
     </div>
     <div class="form-group col-md-2">
       <button type="button"

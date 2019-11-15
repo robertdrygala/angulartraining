@@ -34,7 +34,7 @@ export class CourseDetailsComponent implements OnInit {
         title: TITLE,
         creationDate: futureCourse,
         description: DESCRIPTION,
-        duration: 1,
+        duration: 134,
         topRated: true,
       },
       {
@@ -42,7 +42,7 @@ export class CourseDetailsComponent implements OnInit {
         title: TITLE,
         creationDate: quiteANewOne,
         description: DESCRIPTION,
-        duration: 1,
+        duration: 15,
         topRated: false,
       },
       {
@@ -50,7 +50,7 @@ export class CourseDetailsComponent implements OnInit {
         title: TITLE,
         creationDate: oldCourse,
         description: DESCRIPTION,
-        duration: 1,
+        duration: 340,
         topRated: true,
       },
       {
@@ -58,7 +58,7 @@ export class CourseDetailsComponent implements OnInit {
         title: TITLE,
         creationDate: quiteANewOne,
         description: DESCRIPTION,
-        duration: 1,
+        duration: 133,
         topRated: false,
       },
     ];
