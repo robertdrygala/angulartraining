@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { PlateBorderHiglightDirective } from './directives/plate-border.directiv
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/orderby.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     OrderByPipe,
     FilterPipe,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

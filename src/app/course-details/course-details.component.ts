@@ -15,6 +15,7 @@ export const definition = {
 })
 export class CourseDetailsComponent implements OnInit {
   todoItems: CourseItem[] = [];
+  titleFilter = 'Non';
 
   constructor() {}
 
@@ -63,7 +64,14 @@ export class CourseDetailsComponent implements OnInit {
         description: definition.DESCRIPTION,
         duration: 133,
         topRated: false,
-
+      },
+      {
+        id: '5',
+        title: 'Non video',
+        creationDate: quiteANewOne,
+        description: definition.DESCRIPTION,
+        duration: 133,
+        topRated: false,
       },
     ];
   }

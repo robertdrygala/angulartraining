@@ -6,6 +6,8 @@ import { ListItemComponent } from './list-item.component';
 import { PlateBorderHiglightDirective } from '../directives/plate-border.directive';
 import { DurationPipe } from '../pipes/duration.pipe';
 import { OrderByPipe } from '../pipes/orderby.pipe';
+import { FilterPipe } from '../pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   template: `
@@ -35,7 +37,15 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListItemHostComponent, ListItemComponent, PlateBorderHiglightDirective, DurationPipe, OrderByPipe],
+      declarations: [
+        ListItemHostComponent,
+        ListItemComponent,
+        PlateBorderHiglightDirective,
+        DurationPipe,
+        OrderByPipe,
+        FilterPipe,
+      ],
+      imports: [FormsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
