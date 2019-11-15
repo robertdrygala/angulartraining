@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CourseDetailsComponent, definition } from './course-details.component';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { OrderByPipe } from '../pipes/orderby.pipe';
 
 describe('CourseDetailsComponent', () => {
   let component: CourseDetailsComponent;
@@ -10,7 +11,7 @@ describe('CourseDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CourseDetailsComponent],
+      declarations: [CourseDetailsComponent, OrderByPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
@@ -28,7 +29,7 @@ describe('CourseDetailsComponent', () => {
   it('should have a defined items...', () => {
     fixture.detectChanges();
     component.ngOnInit();
-    expect(component.todoItems.length).toEqual(3);
+    expect(component.todoItems.length).toEqual(4);
   });
 
   it('Should not remove todo item form array', () => {
@@ -38,17 +39,18 @@ describe('CourseDetailsComponent', () => {
       title: definition.TITLE,
       creationDate: new Date(),
       description: definition.DESCRIPTION,
-      duration: 1,
+      duration: 340,
+      topRated: true,
     });
     fixture.detectChanges();
-    expect(component.todoItems.length).toEqual(3);
+    expect(component.todoItems.length).toEqual(4);
   });
 
   it('Should remove todo item from array', () => {
     fixture.detectChanges();
     component.removeItem(component.todoItems[0]);
     fixture.detectChanges();
-    expect(component.todoItems.length).toEqual(2);
+    expect(component.todoItems.length).toEqual(3);
   });
 
   it('Expect Courses element', () => {

@@ -9,6 +9,11 @@ export class PlateBorderHiglightDirective {
   @Input() set appPlaceBorderHiglight(condition: Date) {
     console.log('Provided date : ' + condition);
 
+    if (condition == null) {
+      console.warn('Condition date not set!');
+      return;
+    }
+
     let result = new Date().getTime() - condition.getTime();
     console.log('Provided result : ' + result);
     // tslint:disable-next-line: max-line-length

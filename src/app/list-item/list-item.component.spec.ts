@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ListItemComponent } from './list-item.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { DurationPipe } from '../pipes/duration.pipe';
+import { PlateBorderHiglightDirective } from '../directives/plate-border.directive';
+import { OrderByPipe } from '../pipes/orderby.pipe';
 
 describe('ListItemComponent', () => {
   let component: ListItemComponent;
@@ -10,7 +13,7 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListItemComponent],
+      declarations: [ListItemComponent,ListItemComponent, PlateBorderHiglightDirective, DurationPipe,OrderByPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));

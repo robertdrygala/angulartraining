@@ -3,6 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 import { ListItemComponent } from './list-item.component';
+import { PlateBorderHiglightDirective } from '../directives/plate-border.directive';
+import { DurationPipe } from '../pipes/duration.pipe';
+import { OrderByPipe } from '../pipes/orderby.pipe';
 
 @Component({
   template: `
@@ -16,6 +19,7 @@ class ListItemHostComponent {
     creationDate: new Date(),
     description: 'def',
     duration: 1,
+    topRated: true,
   };
 
   public removedItem: any;
@@ -31,7 +35,7 @@ describe('ListItemComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ListItemHostComponent, ListItemComponent],
+      declarations: [ListItemHostComponent, ListItemComponent, PlateBorderHiglightDirective, DurationPipe, OrderByPipe],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
   }));
@@ -52,7 +56,8 @@ describe('ListItemComponent', () => {
       title: 'title',
       creationDate: new Date(),
       description: 'def',
-      duration: 1,
+      duration: 134,
+      topRated: true,
     };
 
     const nativeElement: HTMLElement = fixture.nativeElement;
