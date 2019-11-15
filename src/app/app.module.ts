@@ -10,17 +10,20 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { PlateBorderHiglightDirective } from './directives/plate-border.directive';
 import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/orderby.pipe';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    FooterComponent, 
-    HeaderComponent, 
-    CourseDetailsComponent, 
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    CourseDetailsComponent,
     ListItemComponent,
     PlateBorderHiglightDirective,
     DurationPipe,
-    OrderByPipe],
+    OrderByPipe,
+    FilterPipe,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
