@@ -1,9 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 
-const TITLE = 'Video Course 1. Name tag';
-// tslint:disable-next-line: max-line-length
-const DESCRIPTION = `Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or college's classes. They're published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.`;
+export const definition = {
+  TITLE: 'Video Course 1. Name tag',
+  DESCRIPTION:
+    // tslint:disable-next-line: max-line-length
+    'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or colleges classes. Theyre published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
+};
 
 @Component({
   selector: 'app-course-details',
@@ -31,43 +34,45 @@ export class CourseDetailsComponent implements OnInit {
     this.todoItems = [
       {
         id: '1',
-        title: TITLE,
+        title: definition.TITLE,
         creationDate: futureCourse,
-        description: DESCRIPTION,
+        description: definition.DESCRIPTION,
         duration: 134,
         topRated: true,
       },
       {
         id: '2',
-        title: TITLE,
+        title: definition.TITLE,
         creationDate: quiteANewOne,
-        description: DESCRIPTION,
+        description: definition.DESCRIPTION,
         duration: 15,
         topRated: false,
       },
       {
         id: '3',
-        title: TITLE,
+        title: definition.TITLE,
         creationDate: oldCourse,
-        description: DESCRIPTION,
+        description: definition.DESCRIPTION,
         duration: 340,
         topRated: true,
       },
       {
         id: '4',
-        title: TITLE,
+        title: definition.TITLE,
         creationDate: quiteANewOne,
-        description: DESCRIPTION,
+        description: definition.DESCRIPTION,
         duration: 133,
         topRated: false,
+
       },
     ];
   }
 
   public removeItem(item: CourseItem) {
-    console.log('Item ' + item.title + ' has been removed....');
+    console.log('Item ' + item.title + ' has been choosen to be removed....');
     const index = this.todoItems.indexOf(item, 0);
     if (index > -1) {
+      console.log('Item ' + item.title + ' has been removed....');
       this.todoItems.splice(index, 1);
     }
   }

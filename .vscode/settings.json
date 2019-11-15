@@ -23,5 +23,6 @@
     "[jsonc]": {
         "editor.defaultFormatter": "HookyQR.beautify"
     },
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "eslint.autoFixOnSave": true
 }

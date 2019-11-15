@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "prettier": "prettier --config ./.prettierrc --list-different \"{projects/*/src,src/app}/**/*.{ts,js,css,less,json}\""
+    "prettier": "prettier --config ./.prettierrc --list-different \"{projects/*/src,src/app}/**/*.{ts,js,css,less,json}\"",
+    "test:coverage": "ng test --source-map --code-coverage"
   },
   "husky": {
     "hooks": {
