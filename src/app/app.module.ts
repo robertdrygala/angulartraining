@@ -12,20 +12,15 @@ import { DurationPipe } from './pipes/duration.pipe';
 import { OrderByPipe } from './pipes/orderby.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { CoreModule } from './core/core.module';
+
+const COMPONENTS = [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent];
+const DIRECTIVES = [PlateBorderHiglightDirective];
+const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    CourseDetailsComponent,
-    ListItemComponent,
-    PlateBorderHiglightDirective,
-    DurationPipe,
-    OrderByPipe,
-    FilterPipe,
-  ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [COMPONENTS, DIRECTIVES, PIPES],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, CoreModule.forRoot( {storage: sessionStorage})],
   providers: [],
   bootstrap: [AppComponent],
 })
