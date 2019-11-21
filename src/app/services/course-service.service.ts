@@ -86,7 +86,9 @@ export class CourseServiceService {
     // this.storage.setItem('course', course.title);
   }
 
-  getItemById() {}
+  getItemById(id: string) {
+    this.todoItems.filter()
+  }
 
   updateItem() {}
 
