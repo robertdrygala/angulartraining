@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { APP_STORAGE } from '../core/core.module';
 import { CourseItem } from '../model/course-item';
 import { Course } from '../model/course';
+import { isNgTemplate } from '@angular/compiler';
 
 export const definition = {
   TITLE: 'Video Course 1. Name tag',
@@ -87,7 +88,7 @@ export class CourseServiceService {
   }
 
   getItemById(id: string) {
-    this.todoItems.filter()
+    return this.todoItems.filter(item => item.id === id);
   }
 
   updateItem() {}
