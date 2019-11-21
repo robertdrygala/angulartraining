@@ -15,7 +15,6 @@ export const definition = {
   providedIn: 'root',
 })
 export class CourseServiceService {
-  // constructor(@Inject(APP_STORAGE) private storage: Storage) {}
   constructor() {
     this.init();
   }
