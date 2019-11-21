@@ -8,7 +8,7 @@ import { CourseServiceService } from '../services/course-service.service';
   styleUrls: ['./course-details.component.less'],
 })
 export class CourseDetailsComponent implements OnInit {
-  titleFilter = 'Non';
+  titleFilter = '';
 
   constructor(public courseService: CourseServiceService) {}
 

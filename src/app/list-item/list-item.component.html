@@ -18,12 +18,20 @@
     <div class="form-group col-md-8">
       <p>{{todoItem.description | lowercase}}</p>
     </div>
-    <div class="form-group col-md-2">
+    <!-- <div class="form-group col-md-2">
       <button type="button"
               class="btn btn-outline-dark remove.button"
               (click)="remove()">Delete</button>
-    </div>
+    </div> -->
     <div class="form-group col-md-2">
+      <button type="button"
+              class="btn btn-outline-dark remove.button"
+              (click)="openModuleModal(content)">Delete</button>
+    </div>
+
+    <div class="
+              form-group
+              col-md-2">
       <button type="button"
               class="btn btn-outline-dark"
               (click)="remove()">Edit</button>
@@ -31,3 +39,24 @@
   </div>
 
 </section>
+
+<ng-template #content
+             let-modal>
+
+  <h4 class="modal-title"
+      id="modal-basic-title">Do you really wan't to delete this course...</h4>
+
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-outline-dark"
+            aria-label="Close"
+            (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">Close</span>
+    </button>
+
+    <button type="button"
+            class="btn btn-outline-dark"
+            (click)="modal.close('Save click')">Delete</button>
+  </div>
+
+</ng-template>

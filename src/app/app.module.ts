@@ -13,6 +13,7 @@ import { OrderByPipe } from './pipes/orderby.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const COMPONENTS = [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent];
 const DIRECTIVES = [PlateBorderHiglightDirective];
@@ -20,7 +21,12 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
 
 @NgModule({
   declarations: [COMPONENTS, DIRECTIVES, PIPES],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, CoreModule.forRoot( {storage: sessionStorage})],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    FormsModule, 
+    CoreModule.forRoot({ storage: sessionStorage }), 
+    NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })

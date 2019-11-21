@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnChanges, EventEmitter, Output } from '@angu
 import { CourseItem } from '../model/course-item';
 
 import { SimpleChanges } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-list-item',
@@ -13,7 +14,7 @@ export class ListItemComponent implements OnInit, OnChanges {
 
   @Input() public todoItem: CourseItem = new CourseItem();
 
-  constructor() {}
+  constructor(public modalService: NgbModal) {}
 
   ngOnInit() {}
 
@@ -21,5 +22,14 @@ export class ListItemComponent implements OnInit, OnChanges {
 
   public remove(): void {
     this.removeItem.emit(this.todoItem);
+  }
+
+  public openModuleModal(content: any) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title', size: 'lg' }).result.then(
+      result => {
+        this.remove();
+      },
+      reason => {},
+    );
   }
 }

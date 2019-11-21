@@ -148,3 +148,9 @@ Components lifecycle hooks ( ngOnInit, ngOnDestroy )
 Pipes and how they affect DOM
 
 # Test host approach
+
+ls -a ~
+
+# Modal
+
+npm install --save @ng-bootstrap/ng-bootstrap
