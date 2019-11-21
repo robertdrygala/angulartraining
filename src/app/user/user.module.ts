@@ -1,9 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { APP_STORAGE } from '../core/core.module';
+import { LoginComponent } from '../login/login.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [LoginComponent],
   providers: [
     {
       provide: APP_STORAGE,
