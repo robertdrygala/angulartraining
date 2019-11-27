@@ -1,6 +1,17 @@
 <div class="header-bg-class">
   <img src="../../assets/logo.png"
        srcset="../../assets/logo@2x.png 2x,../../assets/logo@3x.png 3x"
-       class="header-logo-class"
+       class="header-logo-class form-group col-md-3"
        alt="Logo">
+
+  <button *ngIf="!isAuthorized"
+          class="btn btn-outline-success float-right"
+          type="submit"
+          (click)="login()">Login</button>
+
+  <button *ngIf="isAuthorized"
+          class="btn btn-outline-success float-right"
+          type="submit"
+          (click)="logout()">Logout</button>
+
 </div>
