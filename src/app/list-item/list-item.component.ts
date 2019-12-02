@@ -12,6 +12,8 @@ import { CourseItem } from '../model/course-item';
 
 import { SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CourseServiceService } from '../services/course-service.service';
 
 @Component({
   selector: 'app-list-item',
@@ -24,7 +26,13 @@ export class ListItemComponent implements OnInit, OnChanges {
 
   @Input() public todoItem: CourseItem = new CourseItem();
 
-  constructor(public modalService: NgbModal, private cd: ChangeDetectorRef) {}
+  constructor(
+    public modalService: NgbModal,
+    private cd: ChangeDetectorRef,
+    private router: Router,
+    public courseService: CourseServiceService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {}
 
@@ -41,6 +49,9 @@ export class ListItemComponent implements OnInit, OnChanges {
       },
       reason => {},
     );
+  }
+  edit() {
+    this.router.navigate(['/courses/' + this.todoItem.id]);
   }
 
   refresh() {

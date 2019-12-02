@@ -15,13 +15,9 @@ export const definition = {
   providedIn: 'root',
 })
 export class CourseServiceService {
+  todoItems: CourseItem[];
+
   constructor() {
-    this.init();
-  }
-
-  todoItems: CourseItem[] = [];
-
-  init() {
     let oldCourse = new Date();
     let year = oldCourse.getFullYear();
     oldCourse.setFullYear(year - 1);
@@ -82,12 +78,14 @@ export class CourseServiceService {
     return this.todoItems;
   }
 
-  createCourse(course: Course) {
+  public createCourse(course: Course) {
     // this.storage.setItem('course', course.title);
   }
 
-  getItemById(id: string) {
-    return this.todoItems.filter(item => item.id === id);
+  public getItemById(id: string) {
+    return this.todoItems.find(function(course) {
+      return course.id === id;
+    });
   }
 
   updateItem() {}
