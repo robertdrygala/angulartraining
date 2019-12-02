@@ -21,5 +21,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/welcome']);
   }
 
+  addCourse() {
+    this.router.navigate(['/add-course']);
+  }
+
   ngOnInit() {}
 }

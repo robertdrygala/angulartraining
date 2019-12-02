@@ -15,13 +15,14 @@ import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
+import { AddCourseComponent } from './add-course/add-course.component';
 
 const COMPONENTS = [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent];
 const DIRECTIVES = [PlateBorderHiglightDirective];
 const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
 
 @NgModule({
-  declarations: [COMPONENTS, DIRECTIVES, PIPES],
+  declarations: [COMPONENTS, DIRECTIVES, PIPES, AddCourseComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

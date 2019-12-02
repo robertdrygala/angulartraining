@@ -1,0 +1,78 @@
+<div class="panel panel-primary">
+  <div class="panel-body table-spacing">
+
+    <section class="main">
+
+      <form (ngSubmit)="saveCourseItem()"
+            class="form-horizontal"
+            novalidate
+            #productForm="ngForm">
+        <fieldset>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label for="courseTitle">Title</label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     placeholder="Enter title"
+                     [(ngModel)]="this.courseItem.title"
+                     [ngModelOptions]="{standalone: true}">
+              <small id="courseTitle"
+                     class="form-text text-muted">Put title</small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label for="courseDescription">Description</label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     placeholder="Enter description"
+                     [(ngModel)]="this.courseItem.description"
+                     [ngModelOptions]="{standalone: true}">
+              <small id="courseDescription"
+                     class="form-text text-muted">Put description</small>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-3">
+              <label for="date">Date</label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     [(ngModel)]="this.courseItem.creationDate"
+                     [ngModelOptions]="{standalone: true}">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-5">
+              <label for="suiteDescription">Duration</label>
+              <input type="text"
+                     class="form-control form-control-sm"
+                     placeholder="Enter Test Description"
+                     [textContent]="this.courseItem.duration | durationPipe">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label for="courseAuthors">Authors</label>
+              <input type="text"
+                     placeholder="Enter Authors"
+                     class="form-control form-control-sm">
+              <small id="courseAuthors"
+                     class="form-text text-muted">Put Authors</small>
+            </div>
+          </div>
+
+          <div class="btn-group-toggle"
+               data-toggle="buttons">
+            <button type="submit"
+                    class="btn btn-secondary"
+                    (click)="saveCourseItem()">Save</button>
+            <button type="submit"
+                    class="btn btn-secondary"
+                    (click)="cancel()">Cancel</button>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+
+  </div>
+</div>
