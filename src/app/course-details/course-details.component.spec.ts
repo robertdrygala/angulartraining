@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CourseDetailsComponent, definition } from './course-details.component';
+import { CourseDetailsComponent } from './course-details.component';
 import { CUSTOM_ELEMENTS_SCHEMA, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { OrderByPipe } from '../pipes/orderby.pipe';
 import { FilterPipe } from '../pipes/filter.pipe';
 import { FormsModule } from '@angular/forms';
+import { definition, CourseServiceService } from '../services/course-service.service';
 
 describe('CourseDetailsComponent', () => {
   let component: CourseDetailsComponent;
@@ -16,6 +17,7 @@ describe('CourseDetailsComponent', () => {
       declarations: [CourseDetailsComponent, OrderByPipe, FilterPipe],
       imports: [FormsModule],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      providers: [CourseServiceService],
     }).compileComponents();
   }));
 
@@ -32,12 +34,12 @@ describe('CourseDetailsComponent', () => {
   it('should have a defined items...', () => {
     fixture.detectChanges();
     component.ngOnInit();
-    expect(component.todoItems.length).toEqual(5);
+    expect(component.courseService.getList().length).toEqual(5);
   });
 
   it('Should not remove todo item form array', () => {
     fixture.detectChanges();
-    component.removeItem({
+    component.courseService.removeItem({
       id: '3',
       title: definition.TITLE,
       creationDate: new Date(),
@@ -46,14 +48,14 @@ describe('CourseDetailsComponent', () => {
       topRated: true,
     });
     fixture.detectChanges();
-    expect(component.todoItems.length).toEqual(5);
+    expect(component.courseService.getList().length).toEqual(5);
   });
 
   it('Should remove todo item from array', () => {
     fixture.detectChanges();
-    component.removeItem(component.todoItems[0]);
+    component.courseService.removeItem(component.courseService.getList()[0]);
     fixture.detectChanges();
-    expect(component.todoItems.length).toEqual(4);
+    expect(component.courseService.getList().length).toEqual(4);
   });
 
   it('Expect Courses element', () => {
