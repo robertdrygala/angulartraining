@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.less'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authservice: AuthService) {}
 
-  isAuthorized = false;
+  isAuthorized() {
+    return this.authservice.isAuthenticated();
+  }
 
   login() {
-    this.isAuthorized = true;
     this.router.navigate(['/login']);
   }
 
   logout() {
-    this.isAuthorized = false;
-    this.router.navigate(['/welcome']);
+    this.authservice.logout();
+    this.router.navigate(['']);
   }
 
   addCourse() {

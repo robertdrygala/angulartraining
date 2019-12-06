@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PathResolveService } from './path-resolve.service';
+import { AuthGuard } from './auth.guard';
 
 export const paths = {
   login: 'login',
@@ -20,14 +21,17 @@ const routes: Routes = [
       {
         path: '',
         component: CourseDetailsComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: ':id',
         component: AddCourseComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: 'new',
         component: AddCourseComponent,
+        canActivate: [AuthGuard],
       },
       {
         path: '**',

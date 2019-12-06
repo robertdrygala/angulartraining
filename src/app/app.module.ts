@@ -17,13 +17,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserModule } from './user/user.module';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 
 const COMPONENTS = [AppComponent, FooterComponent, HeaderComponent, CourseDetailsComponent, ListItemComponent];
 const DIRECTIVES = [PlateBorderHiglightDirective];
 const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
 
 @NgModule({
-  declarations: [COMPONENTS, DIRECTIVES, PIPES, AddCourseComponent, NotFoundComponent],
+  declarations: [COMPONENTS, DIRECTIVES, PIPES, AddCourseComponent, NotFoundComponent, BreadCrumbComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

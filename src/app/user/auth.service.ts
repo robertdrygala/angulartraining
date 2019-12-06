@@ -7,7 +7,7 @@ import { APP_STORAGE } from '../core/core.module';
 export class AuthService {
   constructor(@Inject(APP_STORAGE) private storage: Storage) {}
 
-  login(user: any) {
+  login(user: any, password: any) {
     console.log(user);
     this.storage.setItem('user', user);
   }
@@ -16,8 +16,8 @@ export class AuthService {
     this.storage.removeItem('user');
   }
 
-  isAuthenticated(user: any): boolean {
-    return this.storage.getItem('user') == user;
+  isAuthenticated(): boolean {
+    return this.storage.getItem('user') != null;
   }
 
   getUserInfo(): any {
