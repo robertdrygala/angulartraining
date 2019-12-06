@@ -30,6 +30,7 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "angular-tslint-rules": "^1.20.1",
     "prettier": "^1.18.2",
+    "primeng": "^9.0.0-rc.2",
     "rxjs": "~6.4.0",
     "rxjs-tslint-rules": "^4.25.0",
     "tslib": "^1.10.0",
