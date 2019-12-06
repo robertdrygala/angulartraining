@@ -8,15 +8,20 @@ export class AuthService {
   constructor(@Inject(APP_STORAGE) private storage: Storage) {}
 
   login(user: any, password: any) {
-    console.log(user);
+    console.log('Login user : ' + user);
     this.storage.setItem('user', user);
+    this.storage.setItem('password', password);
   }
 
   logout() {
     this.storage.removeItem('user');
+    this.storage.removeItem('password');
+    console.log('user and password has been removed.');
   }
 
   isAuthenticated(): boolean {
+    console.log('Is Authenticated : ' + this.storage.getItem('user'));
+
     return this.storage.getItem('user') != null;
   }
 

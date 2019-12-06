@@ -12,12 +12,12 @@
           type="submit"
           (click)="goToCourse()">Courses</button>
 
-  <button *ngIf="!isAuthorized"
+  <button *ngIf="!isAuthorized()"
           class="btn btn-outline-success float-right"
           type="submit"
           (click)="login()">Login</button>
 
-  <button *ngIf="isAuthorized"
+  <button *ngIf="isAuthorized()"
           class="btn btn-outline-success float-right"
           type="submit"
           (click)="logout()">Logout</button>
