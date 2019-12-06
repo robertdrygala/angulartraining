@@ -22,16 +22,25 @@ const routes: Routes = [
         path: '',
         component: CourseDetailsComponent,
         canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Courses',
+        },
       },
       {
         path: ':id',
         component: AddCourseComponent,
         canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Edit course',
+        },
       },
       {
         path: 'new',
         component: AddCourseComponent,
         canActivate: [AuthGuard],
+        data: {
+          breadcrumb: 'Add new course',
+        },
       },
       {
         path: '**',
@@ -42,7 +51,13 @@ const routes: Routes = [
       },
     ],
   },
-  { path: paths.welcome, component: LoginComponent },
+  {
+    path: paths.welcome,
+    component: LoginComponent,
+    data: {
+      breadcrumb: 'Home',
+    },
+  },
   { path: '', redirectTo: paths.welcome, pathMatch: 'full' },
   {
     path: '**',
