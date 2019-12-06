@@ -1,2 +1,8 @@
-<p-breadcrumb [home]="home"
-              [model]="menuItems"></p-breadcrumb>
+<nav aria-label='breadcrumb'>
+  <ol class='breadcrumb'>
+    <li *ngFor='let breadcrumb of breadcrumbs'>
+      <a [routerLink]='[breadcrumb.url, breadcrumb.params]'
+         routerLinkActive='active'>{{ breadcrumb.label }}</a>
+    </li>
+  </ol>
+</nav>

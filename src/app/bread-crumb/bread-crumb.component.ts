@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { Router, ActivatedRoute, NavigationEnd, PRIMARY_OUTLET } from '@angular/router';
+
 import { filter } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/internal/operators';
 
 @Component({
   selector: 'app-bread-crumb',
@@ -9,40 +10,38 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./bread-crumb.component.less'],
 })
 export class BreadCrumbComponent implements OnInit {
-  static readonly ROUTE_DATA_BREADCRUMB = 'breadcrumb';
-  readonly home = { icon: 'pi pi-home', url: 'home' };
-  menuItems!: MenuItem[];
+  breadcrumbs:any;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => (this.menuItems = this.createBreadcrumbs(this.activatedRoute.root)));
-  }
+      .pipe(map(() => this.activatedRoute))
+      .pipe(
+        map(route => {
+          while (route.firstChild) {
+            route = route.firstChild;
+          }
+          return route;
+        }),
+      )
+      .pipe(filter(route => route.outlet === PRIMARY_OUTLET))
+      .subscribe(route => {
+        let snapshot = this.router.routerState.snapshot;
+        this.breadcrumbs = [];
+        let url = snapshot.url;
+        let routeData = route.snapshot.data;
 
-  // private createBreadcrumbs(route: ActivatedRoute, url: string = '#', breadcrumbs: MenuItem[] = []): MenuItem[]
-  // Function lacks ending return statement and return type does not include 'undefined'
+        console.log(routeData);
+        let label = routeData['breadcrumb'];
+        let params = snapshot.root.params;
 
-  private createBreadcrumbs(route: ActivatedRoute, url: string = '#', breadcrumbs: MenuItem[] = []): any {
-    const children: ActivatedRoute[] = route.children;
-
-    if (children.length === 0) {
-      return breadcrumbs;
-    }
-
-    for (const child of children) {
-      const routeURL: string = child.snapshot.url.map(segment => segment.path).join('/');
-      if (routeURL !== '') {
-        url += `/${routeURL}`;
-      }
-
-      const label = child.snapshot.data[BreadCrumbComponent.ROUTE_DATA_BREADCRUMB];
-      if (!(label === undefined || label === null)) {
-        breadcrumbs.push({ label, url });
-      }
-
-      return this.createBreadcrumbs(child, url, breadcrumbs);
-    }
+        this.breadcrumbs.push({
+          url: url,
+          label: label,
+          params: params,
+        });
+      });
   }
 }
