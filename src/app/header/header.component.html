@@ -4,6 +4,10 @@
        class="header-logo-class form-group col-md-3"
        alt="Logo">
 
+       <button *ngIf="!isAuthorized"
+          class="btn btn-outline-success float-right"
+          type="submit"
+          (click)="addCourse()">Add Course</button>
   <button *ngIf="!isAuthorized"
           class="btn btn-outline-success float-right"
           type="submit"

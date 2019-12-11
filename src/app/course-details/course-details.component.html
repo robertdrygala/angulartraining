@@ -1,14 +1,10 @@
 <section class="item.rectangle">
   <div class="form-row">
-    <div class="form-group col-md-1">
-    </div>
     <div class="form-group col-md-11">Courses</div>
   </div>
 </section>
 <section class="course-list">
   <div class="form-row">
-    <div class="form-group col-md-1">
-    </div>
     <div class="form-group col-md-6">
       <input type="text"
              class="form-control"
@@ -26,8 +22,7 @@
 
   </div>
   <div class="form-row">
-    <div class="form-group col-md-1">
-    </div>
+
     <div class="form-group col-md-10"
          *ngIf="this.courseService.getList().length > 0">
       <app-list-item *ngFor="let item of this.courseService.getList() | orderBy | filterByName: this.titleFilter"
