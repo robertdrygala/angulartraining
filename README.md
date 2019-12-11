@@ -154,3 +154,12 @@ ls -a ~
 # Modal
 
 npm install --save @ng-bootstrap/ng-bootstrap
+
+npm primeng install
+
+npm install @angular/cdk --save
+
+npm install @fullcalendar/core --save
+
+npm install chart.js --save
+npm install quill --save
