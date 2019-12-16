@@ -10,9 +10,15 @@ import { CourseServiceService } from '../services/course-service.service';
 export class CourseDetailsComponent implements OnInit {
   titleFilter = '';
 
+  courseItems: CourseItem[] = [];
+
   constructor(public courseService: CourseServiceService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.courseService.getAllCourses().subscribe(courseWrapper => {
+      this.courseItems = courseWrapper.Items;
+    });
+  }
 
   public calculateClass(item: CourseItem) {
     if (item.topRated) {

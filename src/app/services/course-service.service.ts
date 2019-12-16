@@ -1,92 +1,36 @@
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Injectable, Inject } from '@angular/core';
-import { APP_STORAGE } from '../core/core.module';
 import { CourseItem } from '../model/course-item';
-import { Course } from '../model/course';
-import { isNgTemplate } from '@angular/compiler';
+import { environment } from 'src/environments/environment.prod';
+import { Observable, of } from 'rxjs';
+import { CourseItemWrapper } from '../model/course-item-wrapper';
+import { tap, catchError } from 'rxjs/operators';
 
-export const definition = {
-  TITLE: 'Video Course 1. Name tag',
-  DESCRIPTION:
-    // tslint:disable-next-line: max-line-length
-    'Learn about where you can find course descriptions, what information they include, how they work, and details about various components of a course description. Course descriptions report information about a university or colleges classes. Theyre published both in course catalogs that outline degree requirements and in course schedules that contain descriptions for all courses offered during a particular semester.',
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseServiceService {
-  todoItems: CourseItem[];
+  todoItems!: CourseItem[];
 
-  constructor() {
-    let oldCourse = new Date();
-    let year = oldCourse.getFullYear();
-    oldCourse.setFullYear(year - 1);
+  constructor(private http: HttpClient) {}
 
-    let futureCourse = new Date();
-    year = futureCourse.getFullYear();
-    futureCourse.setFullYear(year + 1);
+  // getList() {
+  //   return this.todoItems;
+  // }
 
-    let quiteANewOne = new Date();
-    let hour = quiteANewOne.getHours();
-    quiteANewOne.setHours(hour - 1);
+  // public createCourse(course: CourseItem) {
+  //   // this.storage.setItem('course', course.title);
+  // }
 
-    this.todoItems = [
-      {
-        id: '1',
-        title: definition.TITLE,
-        creationDate: futureCourse,
-        description: definition.DESCRIPTION,
-        duration: 134,
-        topRated: true,
-      },
-      {
-        id: '2',
-        title: definition.TITLE,
-        creationDate: quiteANewOne,
-        description: definition.DESCRIPTION,
-        duration: 15,
-        topRated: false,
-      },
-      {
-        id: '3',
-        title: definition.TITLE,
-        creationDate: oldCourse,
-        description: definition.DESCRIPTION,
-        duration: 340,
-        topRated: true,
-      },
-      {
-        id: '4',
-        title: definition.TITLE,
-        creationDate: quiteANewOne,
-        description: definition.DESCRIPTION,
-        duration: 133,
-        topRated: false,
-      },
-      {
-        id: '5',
-        title: 'Non video',
-        creationDate: quiteANewOne,
-        description: definition.DESCRIPTION,
-        duration: 133,
-        topRated: false,
-      },
-    ];
-  }
-
-  getList() {
-    return this.todoItems;
-  }
-
-  public createCourse(course: Course) {
-    // this.storage.setItem('course', course.title);
-  }
-
-  public getItemById(id: string) {
-    return this.todoItems.find(function(course) {
-      return course.id === id;
-    });
-  }
+  // public getItemById(id: string) {
+  //   return this.todoItems.find(function(course) {
+  //     return course.id === id;
+  //   });
+  // }
 
   updateItem() {}
 
@@ -97,5 +41,68 @@ export class CourseServiceService {
       console.log('Item ' + item.title + ' has been removed....');
       this.todoItems.splice(index, 1);
     }
+  }
+
+  public getAllCourses(): Observable<CourseItemWrapper> {
+    this.logPath(environment.angular_course_api_gateway);
+
+    return this.http.get<CourseItemWrapper>(environment.angular_course_api_gateway).pipe(
+      tap(_ => this.log('fetched courses')),
+      catchError(this.handleError<CourseItemWrapper>('getAllCourses')),
+    );
+  }
+
+  public getCourseById(courseId: string): Observable<CourseItemWrapper> {
+    this.logPath(environment.angular_course_api_gateway + '/' + courseId);
+
+    return this.http.get<CourseItemWrapper>(environment.angular_course_api_gateway + '/' + courseId).pipe(
+      tap(_ => this.log('fetched course ' + courseId)),
+      catchError(this.handleError<CourseItemWrapper>('getCourseById')),
+    );
+  }
+
+  public deleteCourseById(courseId: string): Observable<any> {
+    this.logPath(environment.angular_course_api_gateway + '/' + courseId);
+    return this.http.delete(environment.angular_course_api_gateway + '/' + courseId).pipe(
+      tap(_ => this.log('Delete course' + courseId)),
+      catchError(this.handleError<any>('deleteCourseById')),
+    );
+  }
+
+  public createCourse(courseItem: CourseItem): Observable<CourseItem> {
+    this.logPath(environment.angular_course_api_gateway_create);
+    this.logCourse(courseItem);
+
+    return this.http.post<CourseItem>(environment.angular_course_api_gateway_create, courseItem, httpOptions).pipe(
+      tap((newSuite: CourseItem) => this.logCourse(newSuite)),
+      catchError(this.handleError<CourseItem>('createCourse')),
+    );
+  }
+
+  private logPath(path: string) {
+    console.log('Execute REST endpoint: ' + path);
+  }
+
+  private logCourse(course: CourseItem) {
+    console.log('Course title : ' + course);
+    console.log('Course id : ' + course.id);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    console.log(message);
   }
 }

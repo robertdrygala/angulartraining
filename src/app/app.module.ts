@@ -18,6 +18,9 @@ import { UserModule } from './user/user.module';
 import { AddCourseComponent } from './add-course/add-course.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
+import { HttpClientModule } from '@angular/common/http';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 const COMPONENTS = [
   AppComponent,
@@ -41,6 +44,10 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
     CoreModule.forRoot({ storage: sessionStorage }),
     UserModule.forRoot({ storage: localStorage }),
     NgbModule,
+    HttpClientModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
