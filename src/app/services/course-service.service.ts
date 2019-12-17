@@ -18,21 +18,15 @@ export class CourseServiceService {
 
   constructor(private http: HttpClient) {}
 
-  // getList() {
-  //   return this.todoItems;
-  // }
+  updateCourse(courseItem: CourseItem) {
+    this.logPath(environment.angular_course_api_gateway_update);
+    this.logCourse(courseItem);
 
-  // public createCourse(course: CourseItem) {
-  //   // this.storage.setItem('course', course.title);
-  // }
-
-  // public getItemById(id: string) {
-  //   return this.todoItems.find(function(course) {
-  //     return course.id === id;
-  //   });
-  // }
-
-  updateItem() {}
+    return this.http.put<CourseItem>(environment.angular_course_api_gateway_update, courseItem, httpOptions).pipe(
+      tap((updatedSuite: CourseItem) => this.logCourse(updatedSuite)),
+      catchError(this.handleError<CourseItem>('updateCourse')),
+    );
+  }
 
   public removeItem(item: CourseItem) {
     console.log('Item ' + item.title + ' has been choosen to be removed....');

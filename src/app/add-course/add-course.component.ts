@@ -48,8 +48,17 @@ export class AddCourseComponent implements OnInit {
   }
 
   saveCourseItem() {
-    console.log('Save course ... ' + this.courseItem.id);
-    this.courseService.createCourse(this.courseItem);
+    if (this.pageMode === MODE.NEW) {
+      console.log('Create new course ... ' + this.courseItem.id);
+      this.courseService
+        .createCourse(this.courseItem)
+        .subscribe(course => (this.courseItem = course), (error: any) => console.error(error));
+    } else if (this.pageMode === MODE.EDIT) {
+      console.log('Update course ... ' + this.courseItem.id);
+      this.courseService
+        .updateCourse(this.courseItem)
+        .subscribe(course => (this.courseItem = course), (error: any) => console.error(error));
+    }
     this.router.navigate(['/courses']);
   }
 

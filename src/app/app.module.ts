@@ -19,8 +19,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { HttpClientModule } from '@angular/common/http';
-import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 
 const COMPONENTS = [
   AppComponent,
@@ -45,9 +45,9 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
     UserModule.forRoot({ storage: localStorage }),
     NgbModule,
     HttpClientModule,
-    OwlDateTimeModule,
-    OwlNativeDateTimeModule,
     BrowserAnimationsModule,
+    DlDateTimeDateModule, // <--- Determines the data type of the model
+    DlDateTimePickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

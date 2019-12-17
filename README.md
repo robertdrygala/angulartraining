@@ -168,3 +168,5 @@ npm install ng-pick-datetime --save
 npm install @angular/animations --save
 
 npm install uuid
+
+npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
