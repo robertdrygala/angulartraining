@@ -19,6 +19,7 @@ export class AuthService {
       tap(_ => this.log('fetched courses')),
       catchError(this.handleError<String>('login')),
     ).toPromise().then(value => {
+      console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
     });
 
