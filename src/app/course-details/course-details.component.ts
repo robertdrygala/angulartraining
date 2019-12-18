@@ -21,6 +21,12 @@ export class CourseDetailsComponent implements OnInit{
     });
   }
 
+  search(){
+    this.courseService.filterCourses(this.titleFilter).subscribe(courseWrapper => {
+      console.log('Fetched data : ' + courseWrapper.Count);
+      this.courseItems = courseWrapper.Items;
+    });
+  }
 
   public removeItem(item: CourseItem) {
 

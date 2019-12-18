@@ -17,7 +17,7 @@ export class CourseServiceService {
 
   constructor(private http: HttpClient) {}
 
-  updateCourse(courseItem: CourseItem) {
+  public updateCourse(courseItem: CourseItem) {
     this.logPath(environment.angular_course_api_gateway_update);
     this.logCourse(courseItem);
 
