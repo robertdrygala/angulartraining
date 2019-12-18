@@ -14,7 +14,6 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CourseServiceService {
-  todoItems!: CourseItem[];
 
   constructor(private http: HttpClient) {}
 
@@ -26,15 +25,6 @@ export class CourseServiceService {
       tap((updatedSuite: CourseItem) => this.logCourse(updatedSuite)),
       catchError(this.handleError<CourseItem>('updateCourse')),
     );
-  }
-
-  public removeItem(item: CourseItem) {
-    console.log('Item ' + item.title + ' has been choosen to be removed....');
-    const index = this.todoItems.indexOf(item, 0);
-    if (index > -1) {
-      console.log('Item ' + item.title + ' has been removed....');
-      this.todoItems.splice(index, 1);
-    }
   }
 
   public getAllCourses(): Observable<CourseItemWrapper> {

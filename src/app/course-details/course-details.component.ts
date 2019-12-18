@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 import { CourseServiceService } from '../services/course-service.service';
 
@@ -7,7 +7,8 @@ import { CourseServiceService } from '../services/course-service.service';
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.less'],
 })
-export class CourseDetailsComponent implements OnInit {
+export class CourseDetailsComponent implements OnInit{
+
   titleFilter = '';
 
   courseItems: CourseItem[] = [];
@@ -19,6 +20,23 @@ export class CourseDetailsComponent implements OnInit {
       this.courseItems = courseWrapper.Items;
     });
   }
+
+
+  public removeItem(item: CourseItem) {
+
+    const index = this.courseItems.indexOf(item, 0);
+    if (index > -1) {
+      console.log('Item ' + item.title + ' has been removed....');
+      this.courseItems.splice(index, 1);
+    }
+
+    this.courseService.deleteCourseById(item.id).subscribe((result) =>{
+      console.log('Item has been removed' + result);
+    }, error =>{
+      console.log('error occured ' + error);
+    });
+  }
+
 
   public calculateClass(item: CourseItem) {
     if (item.topRated) {
