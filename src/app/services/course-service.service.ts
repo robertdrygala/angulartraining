@@ -36,6 +36,15 @@ export class CourseServiceService {
     );
   }
 
+  public filterCourses(searchText: string): Observable<CourseItemWrapper> {
+    this.logPath(environment.angular_course_api_gateway_query);
+
+    return this.http.get<CourseItemWrapper>(environment.angular_course_api_gateway_query + '/' + searchText).pipe(
+      tap(_ => this.log('fetched courses')),
+      catchError(this.handleError<CourseItemWrapper>('filterCourses')),
+    );
+  }
+
   public getCourseById(courseId: string): Observable<CourseItemWrapper> {
     this.logPath(environment.angular_course_api_gateway + '/' + courseId);
 
