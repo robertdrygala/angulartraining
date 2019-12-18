@@ -25,7 +25,6 @@
 
     <div class="form-group col-md-10"
          *ngIf="this.courseItems.length > 0">
-      <!-- <app-list-item *ngFor="let item of this.courseItems | orderBy | filterByName: this.titleFilter" -->
         <app-list-item *ngFor="let item of this.courseItems"
                      [todoItem]="item"
                      (removeItem)="this.removeItem($event)"
