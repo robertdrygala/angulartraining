@@ -35,6 +35,7 @@ export class AddCourseComponent implements OnInit {
         console.log('Fetched course \n');
         console.log(JSON.stringify(courseItemWrapper));
         this.courseItem = courseItemWrapper.Item;
+        this.courseItem.creationDate = new Date(courseItemWrapper.Item.creationDate);
       });
     } else {
       console.log('New mode...');
