@@ -21,6 +21,7 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const COMPONENTS = [
   AppComponent,
@@ -48,6 +49,7 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
     BrowserAnimationsModule,
     DlDateTimeDateModule, // <--- Determines the data type of the model
     DlDateTimePickerModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

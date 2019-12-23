@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseServiceService } from '../services/course-service.service';
@@ -17,6 +17,7 @@ export enum MODE {
   styleUrls: ['./add-course.component.less'],
 })
 export class AddCourseComponent implements OnInit {
+
   courseItem!: CourseItem;
 
   constructor(private router: Router, public courseService: CourseServiceService, private route: ActivatedRoute) {}

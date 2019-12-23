@@ -3,7 +3,9 @@ import { APP_STORAGE } from '../core/core.module';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { tap, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { IUser } from '../model/user-interface';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root',
@@ -11,8 +13,11 @@ import { Observable, of } from 'rxjs';
 export class AuthService {
   constructor(@Inject(APP_STORAGE) private storage: Storage,private http: HttpClient) {}
 
-  login(user: any, password: any) {
+  private subject = new Subject<User>(); 
+
+  login(user: any, password: any){
     console.log('Login user : ' + user);
+  
     this.storage.setItem('user', user);
     this.storage.setItem('password', password);
     this.http.get<String>(environment.angular_course_api_gateway_auth).pipe(
@@ -21,25 +26,28 @@ export class AuthService {
     ).subscribe(value => {
       console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
+      this.subject.next(new User(user,password,value.toString()));
     });
-
   }
 
   logout() {
     this.storage.removeItem('user');
     this.storage.removeItem('password');
     this.storage.removeItem('token');
+    this.subject.next();
     console.log('user and password has been removed.');
   }
 
-  isAuthenticated(): boolean {
+  isAuthenticated(): Observable<boolean>  {
     console.log('Is Authenticated : ' + this.storage.getItem('token'));
 
-    return this.storage.getItem('token') != null;
+    return new Observable<boolean> (observer => {
+      observer.next(this.storage.getItem('token') != null);
+    })
   }
 
-  getUserInfo(): any {
-    return this.storage.getItem('user');
+  getUserInfo(): Observable<IUser> {
+    return this.subject.asObservable();
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

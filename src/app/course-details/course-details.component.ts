@@ -1,6 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+
+import { Component, OnInit } from '@angular/core';
 import { CourseItem } from '../model/course-item';
 import { CourseServiceService } from '../services/course-service.service';
+import { debounceTime } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/internal/observable/fromEvent';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-course-details',
@@ -13,24 +17,33 @@ export class CourseDetailsComponent implements OnInit{
 
   courseItems: CourseItem[] = [];
 
-  constructor(public courseService: CourseServiceService) {}
+  constructor(public courseService: CourseServiceService,private spinner: NgxSpinnerService) {}
 
   ngOnInit() {
     this.loadCourses();
   }
 
   loadCourses(){
+    this.spinner.show();
     this.courseService.getAllCourses().subscribe(courseWrapper => {
       this.courseItems = courseWrapper.Items;
+      this.spinner.hide();
+    }, err =>{
+      this.spinner.hide();
     });
   }
 
   search(){
-    this.courseService.filterCourses(this.titleFilter).subscribe(courseWrapper => {
+    this.courseService.filterCourses(this.titleFilter).pipe(debounceTime(1000)).subscribe(courseWrapper => {
       console.log('Fetched data : ' + courseWrapper.Count);
       this.courseItems = courseWrapper.Items;
+      this.spinner.hide();
+    }, err =>{
+      this.spinner.hide();
     });
   }
+
+  
 
   public removeItem(item: CourseItem) {
     this.courseService.deleteCourseById(item.id).subscribe((result) =>{
@@ -41,6 +54,18 @@ export class CourseDetailsComponent implements OnInit{
     });
   }
 
+
+  public onChange(value: String){
+    console.log('Value passed to method: ' + value);
+
+    if(value != null && value.length > 2){
+      console.log('Execute search: ' + value);
+      this.search();
+    }
+    else if(value == ''){
+      this.loadCourses();
+    }
+  }
 
   public calculateClass(item: CourseItem) {
     if (item.topRated) {
