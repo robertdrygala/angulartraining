@@ -32,6 +32,8 @@ export class AddCourseComponent implements OnInit {
       console.log('Course id : ' + this.courseId);
       this.pageMode = MODE.EDIT;
       this.courseService.getCourseById(this.courseId).subscribe(courseItemWrapper => {
+        console.log('Fetched course \n');
+        console.log(JSON.stringify(courseItemWrapper));
         this.courseItem = courseItemWrapper.Item;
       });
     } else {
