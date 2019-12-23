@@ -6,16 +6,19 @@ import { CourseItem } from '../model/course-item';
 })
 export class OrderByPipe implements PipeTransform {
   transform(allCurseItems: CourseItem[]) {
+  
     allCurseItems.sort((item1, item2) => {
-      // TypeError: condition.getTime is not a function FIX it somehow
 
-      // if (item1.creationDate.getTime() > item2.creationDate.getTime()) {
-      //   return 1;
-      // }
+      let date1 = new Date(item1.creationDate);
+      let date2 = new Date(item2.creationDate);
 
-      // if (item1.creationDate.getTime() < item2.creationDate.getTime()) {
-      //   return -1;
-      // }
+      if (date1.getTime() > date2.getTime()) {
+        return 1;
+      }
+
+      if (date1.getTime() < date2.getTime()) {
+        return -1;
+      }
 
       return 0;
     });

@@ -16,6 +16,10 @@ export class CourseDetailsComponent implements OnInit{
   constructor(public courseService: CourseServiceService) {}
 
   ngOnInit() {
+    this.loadCourses();
+  }
+
+  loadCourses(){
     this.courseService.getAllCourses().subscribe(courseWrapper => {
       this.courseItems = courseWrapper.Items;
     });
@@ -29,15 +33,9 @@ export class CourseDetailsComponent implements OnInit{
   }
 
   public removeItem(item: CourseItem) {
-
-    const index = this.courseItems.indexOf(item, 0);
-    if (index > -1) {
-      console.log('Item ' + item.title + ' has been removed....');
-      this.courseItems.splice(index, 1);
-    }
-
     this.courseService.deleteCourseById(item.id).subscribe((result) =>{
       console.log('Item has been removed' + result);
+      this.loadCourses();
     }, error =>{
       console.log('error occured ' + error);
     });

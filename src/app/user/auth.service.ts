@@ -18,7 +18,7 @@ export class AuthService {
     this.http.get<String>(environment.angular_course_api_gateway_auth).pipe(
       tap(_ => this.log('fetched courses')),
       catchError(this.handleError<String>('login')),
-    ).toPromise().then(value => {
+    ).subscribe(value => {
       console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
     });

@@ -13,18 +13,16 @@ export class PlateBorderHiglightDirective {
       console.warn('Condition date not set!');
       return;
     }
-    // TypeError: condition.getTime is not a function FIX it somehow
 
-    // let result = new Date().getTime() - condition.getTime();
-    // console.log('Provided result : ' + result);
-    // // tslint:disable-next-line: max-line-length
-    // if (result > 0 && result / 1000 < this.SEC_WEEK) {
-    //   this.el.nativeElement.style.border = '3px solid green';
-    // } else if (new Date().getTime() < condition.getTime()) {
-    //   this.el.nativeElement.style.border = '3px solid blue';
-    // } else {
-    //   this.el.nativeElement.style.border = null;
-    // }
+    let result = new Date().getTime() - new Date(condition).getTime();
+    console.log('Provided result : ' + result);
+    if (result > 0 && result / 1000 < this.SEC_WEEK) {
+      this.el.nativeElement.style.border = '3px solid green';
+    } else if (new Date().getTime() <  new Date(condition).getTime()) {
+      this.el.nativeElement.style.border = '3px solid blue';
+    } else {
+      this.el.nativeElement.style.border = null;
+    }
   }
 
   constructor(private el: ElementRef) {
