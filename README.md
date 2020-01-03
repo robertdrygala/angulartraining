@@ -172,3 +172,12 @@ npm install uuid
 npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
 
 npm install ngx-spinner --save
+
+
+# Task 10 
+
+npm install --save ngrx/core
+
+npm install --save ngrx/store
+
+npm install --save ngrx/store-devtools
