@@ -6,12 +6,17 @@ import { CourseItem } from '../model/course-item';
 })
 export class OrderByPipe implements PipeTransform {
   transform(allCurseItems: CourseItem[]) {
+  
     allCurseItems.sort((item1, item2) => {
-      if (item1.creationDate.getTime() > item2.creationDate.getTime()) {
+
+      let date1 = new Date(item1.creationDate);
+      let date2 = new Date(item2.creationDate);
+
+      if (date1.getTime() > date2.getTime()) {
         return 1;
       }
 
-      if (item1.creationDate.getTime() < item2.creationDate.getTime()) {
+      if (date1.getTime() < date2.getTime()) {
         return -1;
       }
 

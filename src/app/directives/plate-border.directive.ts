@@ -14,12 +14,11 @@ export class PlateBorderHiglightDirective {
       return;
     }
 
-    let result = new Date().getTime() - condition.getTime();
+    let result = new Date().getTime() - new Date(condition).getTime();
     console.log('Provided result : ' + result);
-    // tslint:disable-next-line: max-line-length
     if (result > 0 && result / 1000 < this.SEC_WEEK) {
       this.el.nativeElement.style.border = '3px solid green';
-    } else if (new Date().getTime() < condition.getTime()) {
+    } else if (new Date().getTime() <  new Date(condition).getTime()) {
       this.el.nativeElement.style.border = '3px solid blue';
     } else {
       this.el.nativeElement.style.border = null;

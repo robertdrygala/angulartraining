@@ -33,12 +33,14 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="form-group col-md-3">
-              <label for="date">Date</label>
-              <input type="text"
-                     class="form-control form-control-sm"
-                     [(ngModel)]="this.courseItem.creationDate"
-                     [ngModelOptions]="{standalone: true}">
+            <div class="form-group col-md-7">
+              <dl-date-time-picker startView="day"
+                                   maxView="year"
+                                   minView="minute"
+                                   minuteStep="30"
+                                   [(ngModel)]="this.courseItem.creationDate"
+                                   [ngModelOptions]="{standalone: true}">
+              </dl-date-time-picker>
             </div>
           </div>
           <div class="form-row">
@@ -47,6 +49,8 @@
               <input type="text"
                      class="form-control form-control-sm"
                      placeholder="Enter Duration"
+                     [(ngModel)]="this.courseItem.duration"
+                     [ngModelOptions]="{standalone: true}"
                      [textContent]="this.courseItem.duration | durationPipe">
             </div>
           </div>
