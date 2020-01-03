@@ -12,7 +12,7 @@ import { CourseItem } from '../model/course-item';
 
 import { SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CourseServiceService } from '../services/course-service.service';
 
 @Component({
