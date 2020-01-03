@@ -15,7 +15,7 @@
     </div>
     <div class="form-group col-md-1">
       <button type="button"
-              class="btn btn-outline-success">Search</button>
+              class="btn btn-outline-success"  (click)="search()">Search</button>
     </div>
     <div class="form-group col-md-4">
     </div>
@@ -24,15 +24,15 @@
   <div class="form-row">
 
     <div class="form-group col-md-10"
-         *ngIf="this.courseService.getList().length > 0">
-      <app-list-item *ngFor="let item of this.courseService.getList() | orderBy | filterByName: this.titleFilter"
+         *ngIf="this.courseItems.length > 0">
+        <app-list-item *ngFor="let item of this.courseItems"
                      [todoItem]="item"
-                     (removeItem)="this.courseService.removeItem($event)"
+                     (removeItem)="this.removeItem($event)"
                      [ngClass]="calculateClass(item)">
       </app-list-item>
     </div>
     <div class="form-group col-md-10"
-         *ngIf="this.courseService.getList().length == 0">
+         *ngIf="this.courseItems.length == 0">
       <p> NO DATA AVAILABLE</p>
     </div>
 
