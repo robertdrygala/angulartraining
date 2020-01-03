@@ -31,7 +31,6 @@ export class ListItemComponent implements OnInit, OnChanges {
     private cd: ChangeDetectorRef,
     private router: Router,
     public courseService: CourseServiceService,
-    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {}

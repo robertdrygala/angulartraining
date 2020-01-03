@@ -3,6 +3,7 @@ import { CourseItem } from '../model/course-item';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CourseServiceService } from '../services/course-service.service';
 import { v4 as uuid } from 'uuid';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 export enum MODE {
   NEW,
@@ -20,12 +21,14 @@ export class AddCourseComponent implements OnInit {
 
   courseItem!: CourseItem;
 
-  constructor(private router: Router, public courseService: CourseServiceService, private route: ActivatedRoute) {}
+  constructor(private router: Router, public courseService: CourseServiceService, 
+    private route: ActivatedRoute,private spinner: NgxSpinnerService) {}
 
   courseId: string | undefined;
   pageMode: MODE = MODE.NONE;
 
   ngOnInit() {
+    this.spinner.show();
     this.courseId = this.route.snapshot.params['id'];
 
     if (this.courseId && this.courseId != 'new') {
@@ -49,6 +52,7 @@ export class AddCourseComponent implements OnInit {
       this.courseItem.topRated = true;
       this.courseItem.id = uuid();
     }
+    this.spinner.hide();
   }
 
   saveCourseItem() {
