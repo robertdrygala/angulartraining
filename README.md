@@ -180,4 +180,17 @@ npm install --save ngrx/core
 
 npm install --save ngrx/store
 
+npm install --save ngrx/effects
+npm install --save ngrx/entity
+npm install --save ngrx/router-store
+npm install --save ngrx/data
+
 npm install --save ngrx/store-devtools
+
+# ngrx schematics 
+
+npm i -D @ngrx/schematics
+
+ng add @ngrx/schematics
+
+# 
