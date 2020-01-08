@@ -6,12 +6,14 @@ import { tap, catchError } from 'rxjs/operators';
 import { Observable, of, Subject } from 'rxjs';
 import { IUser } from '../model/user-interface';
 import { User } from '../model/user';
+import { Store } from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(APP_STORAGE) private storage: Storage,private http: HttpClient) {}
+  constructor(@Inject(APP_STORAGE) private storage: Storage,
+  private http: HttpClient) {}
 
   private subject = new Subject<User>(); 
 
@@ -20,6 +22,7 @@ export class AuthService {
   
     this.storage.setItem('user', user);
     this.storage.setItem('password', password);
+
     this.http.get<String>(environment.angular_course_api_gateway_auth).pipe(
       tap(_ => this.log('fetched courses')),
       catchError(this.handleError<String>('login')),
