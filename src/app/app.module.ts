@@ -24,6 +24,7 @@ import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from './store/effects/auth.effects';
+import { StoreModule } from '@ngrx/store';
 
 const COMPONENTS = [
   AppComponent,
@@ -52,6 +53,7 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
     DlDateTimeDateModule, // <--- Determines the data type of the model
     DlDateTimePickerModule,
     NgxSpinnerModule,
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([AuthEffects])
   ],
   providers: [],
