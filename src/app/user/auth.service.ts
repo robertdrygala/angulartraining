@@ -7,6 +7,7 @@ import { Observable, of, Subject } from 'rxjs';
 import { IUser } from '../model/user-interface';
 import { User } from '../model/user';
 import { Store } from '@ngrx/store';
+import {Credentials} from '../model/user'
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,11 @@ export class AuthService {
 
   private subject = new Subject<User>(); 
 
-  login(user: any, password: any){
-    console.log('Login user : ' + user);
+  login(credentials: Credentials){
+    console.log('Login user : ' + credentials.username);
   
-    this.storage.setItem('user', user);
-    this.storage.setItem('password', password);
+    this.storage.setItem('user', credentials.username);
+    this.storage.setItem('password', credentials.password);
 
     this.http.get<String>(environment.angular_course_api_gateway_auth).pipe(
       tap(_ => this.log('fetched courses')),
@@ -29,7 +30,7 @@ export class AuthService {
     ).subscribe(value => {
       console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
-      this.subject.next(new User(user,password,value.toString()));
+      this.subject.next(new User(credentials.username,credentials.password,value.toString()));
     });
   }
 

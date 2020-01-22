@@ -12,3 +12,13 @@ export class User implements IUser {
     token:string | null) {
   }
 }
+
+export class Credentials {
+  username!: string;
+  password!: string;
+
+  constructor(
+    username: string | null,
+    password: string | null) {
+  }
+}

@@ -22,7 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { StoreModule } from '@ngrx/store';
+
 
 const COMPONENTS = [
   AppComponent,
@@ -50,7 +50,7 @@ const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
     BrowserAnimationsModule,
     DlDateTimeDateModule, // <--- Determines the data type of the model
     DlDateTimePickerModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
