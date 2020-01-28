@@ -7,4 +7,5 @@ export class CourseItem implements ICourseItem {
   duration!: number;
   description!: string;
   topRated!: boolean;
+  authors!:string;
 }

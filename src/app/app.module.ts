@@ -24,6 +24,7 @@ import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { StoreModule } from '@ngrx/store';
 import { authReducer } from './user/auth.reducer';
+import { NumericDirective } from './directives/numeric.directive';
 
 
 const COMPONENTS = [
@@ -36,7 +37,7 @@ const COMPONENTS = [
   NotFoundComponent,
   BreadCrumbComponent,
 ];
-const DIRECTIVES = [PlateBorderHiglightDirective];
+const DIRECTIVES = [PlateBorderHiglightDirective,NumericDirective];
 const PIPES = [DurationPipe, OrderByPipe, FilterPipe];
 
 @NgModule({

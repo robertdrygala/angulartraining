@@ -198,3 +198,6 @@ ng add @ngrx/schematics
 npm install @ngrx/schematics --save-dev
 
 ng add @ngrx/schematics
+
+
+npm install moment --save
