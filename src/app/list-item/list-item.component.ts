@@ -12,7 +12,7 @@ import { CourseItem } from '../model/course-item';
 
 import { SimpleChanges } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CourseServiceService } from '../services/course-service.service';
 
 @Component({
@@ -31,7 +31,6 @@ export class ListItemComponent implements OnInit, OnChanges {
     private cd: ChangeDetectorRef,
     private router: Router,
     public courseService: CourseServiceService,
-    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {}

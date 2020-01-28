@@ -37,6 +37,9 @@
     "moment": "^2.24.0",
     "ng-fullcalendar": "^2.0.3",
     "ng-pick-datetime": "^7.0.0",
+    "ng-template": "^1.0.0",
+    "ngx-loading": "^8.0.0",
+    "ngx-spinner": "^8.1.0",
     "open-iconic": "^1.1.1",
     "prettier": "^1.18.2",
     "primeng": "^9.0.0-rc.2",
@@ -48,7 +51,7 @@
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.803.12",
+    "@angular-devkit/build-angular": "^0.803.21",
     "@angular/cli": "~8.3.12",
     "@angular/compiler-cli": "~8.2.11",
     "@angular/language-service": "~8.2.11",
