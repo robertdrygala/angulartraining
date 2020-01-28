@@ -3,43 +3,61 @@ import { APP_STORAGE } from '../core/core.module';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { tap, catchError } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
+import { IUser } from '../model/user-interface';
+import { User } from '../model/user';
+import { Store, select } from '@ngrx/store';
+import {Credentials} from '../model/user'
+
+import { loginAction, logoutAction } from './auth.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(APP_STORAGE) private storage: Storage,private http: HttpClient) {}
+  
+  private isLoggedIn$: Observable<boolean>;
+  private subject = new Subject<User>(); 
 
-  login(user: any, password: any) {
-    console.log('Login user : ' + user);
-    this.storage.setItem('user', user);
-    this.storage.setItem('password', password);
+  constructor(@Inject(APP_STORAGE) private storage: Storage,
+  private http: HttpClient, private store: Store<{ loggedIn: boolean }>) {
+    this.isLoggedIn$ = store.pipe(select('loggedIn'));
+  }
+
+
+
+  login(credentials: Credentials){
+    console.log('Login user : ' + credentials.username);
+  
+    this.storage.setItem('user', credentials.username);
+    this.storage.setItem('password', credentials.password);
+
     this.http.get<String>(environment.angular_course_api_gateway_auth).pipe(
       tap(_ => this.log('fetched courses')),
       catchError(this.handleError<String>('login')),
     ).subscribe(value => {
       console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
+      this.subject.next(new User(credentials.username,credentials.password,value.toString()));
+      this.store.dispatch(loginAction());
     });
-
   }
 
   logout() {
     this.storage.removeItem('user');
     this.storage.removeItem('password');
     this.storage.removeItem('token');
+    this.subject.next();
+    this.store.dispatch(logoutAction());
     console.log('user and password has been removed.');
   }
 
-  isAuthenticated(): boolean {
-    console.log('Is Authenticated : ' + this.storage.getItem('token'));
-
-    return this.storage.getItem('token') != null;
+  isAuthenticated(): Observable<boolean>  {
+    return this.store.pipe(select('loggedIn'));
   }
 
-  getUserInfo(): any {
-    return this.storage.getItem('user');
+  getUserInfo(): Observable<IUser> {
+    return this.subject.asObservable();
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

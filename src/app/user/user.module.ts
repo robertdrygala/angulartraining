@@ -5,6 +5,7 @@ import { LoginComponent } from '../login/login.component';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     CommonModule, 
     RouterModule.forChild(routes),
     BrowserModule,
-    FormsModule,],
+    FormsModule,
+    NgxSpinnerModule],
 })
 export class UserModule {
   static forRoot({ storage }: { storage: Storage }): ModuleWithProviders {
