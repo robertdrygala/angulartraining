@@ -194,3 +194,7 @@ npm i -D @ngrx/schematics
 ng add @ngrx/schematics
 
 # 
+
+npm install @ngrx/schematics --save-dev
+
+ng add @ngrx/schematics

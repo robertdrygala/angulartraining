@@ -5,6 +5,7 @@ export class User implements IUser {
   firstName!: string;
   lastName!: string;
   token!:string;
+  email!:string;
 
   constructor(
     firstName: string | null,

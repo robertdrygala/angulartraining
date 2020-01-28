@@ -6,17 +6,25 @@ import { tap, catchError } from 'rxjs/operators';
 import { Observable, of, Subject } from 'rxjs';
 import { IUser } from '../model/user-interface';
 import { User } from '../model/user';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import {Credentials} from '../model/user'
+
+import { loginAction, logoutAction } from './auth.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(APP_STORAGE) private storage: Storage,
-  private http: HttpClient) {}
-
+  
+  private isLoggedIn$: Observable<boolean>;
   private subject = new Subject<User>(); 
+
+  constructor(@Inject(APP_STORAGE) private storage: Storage,
+  private http: HttpClient, private store: Store<{ loggedIn: boolean }>) {
+    this.isLoggedIn$ = store.pipe(select('loggedIn'));
+  }
+
+
 
   login(credentials: Credentials){
     console.log('Login user : ' + credentials.username);
@@ -31,6 +39,7 @@ export class AuthService {
       console.log('Token fetched for user : ' + value.toString());
       this.storage.setItem('token', value.toString());
       this.subject.next(new User(credentials.username,credentials.password,value.toString()));
+      this.store.dispatch(loginAction());
     });
   }
 
@@ -39,15 +48,12 @@ export class AuthService {
     this.storage.removeItem('password');
     this.storage.removeItem('token');
     this.subject.next();
+    this.store.dispatch(logoutAction());
     console.log('user and password has been removed.');
   }
 
   isAuthenticated(): Observable<boolean>  {
-    console.log('Is Authenticated : ' + this.storage.getItem('token'));
-
-    return new Observable<boolean> (observer => {
-      observer.next(this.storage.getItem('token') != null);
-    })
+    return this.store.pipe(select('loggedIn'));
   }
 
   getUserInfo(): Observable<IUser> {

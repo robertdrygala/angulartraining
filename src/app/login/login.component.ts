@@ -25,6 +25,8 @@ export class LoginComponent implements OnInit {
   login() {
     this.spinner.show();
     this.delay(3000).then(any => {
+      
+      
 
         if (this.username && this.password) {
           let credentials = new Credentials(this.username,this.password);
