@@ -170,3 +170,34 @@ npm install @angular/animations --save
 npm install uuid
 
 npm install --save angular-bootstrap-datetimepicker bootstrap moment open-iconic
+
+npm install ngx-spinner --save
+
+
+# Task 10 
+
+npm install --save ngrx/core
+
+npm install --save ngrx/store
+
+npm install --save ngrx/effects
+npm install --save ngrx/entity
+npm install --save ngrx/router-store
+npm install --save ngrx/data
+
+npm install --save ngrx/store-devtools
+
+# ngrx schematics 
+
+npm i -D @ngrx/schematics
+
+ng add @ngrx/schematics
+
+# 
+
+npm install @ngrx/schematics --save-dev
+
+ng add @ngrx/schematics
+
+
+npm install moment --save

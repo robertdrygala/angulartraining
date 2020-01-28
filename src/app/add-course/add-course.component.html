@@ -15,9 +15,14 @@
                      class="form-control form-control-sm"
                      placeholder="Enter title"
                      [(ngModel)]="this.courseItem.title"
-                     [ngModelOptions]="{standalone: true}">
+                     [ngModelOptions]="{standalone: true}"
+                     #title="ngModel"
+                     maxlength=50
+                     required>
               <small id="courseTitle"
                      class="form-text text-muted">Put title</small>
+              <span *ngIf="title.errors?.required" class="text-danger">This field is required</span>
+              
             </div>
           </div>
           <div class="form-row">
@@ -27,9 +32,13 @@
                      class="form-control form-control-sm"
                      placeholder="Enter description"
                      [(ngModel)]="this.courseItem.description"
-                     [ngModelOptions]="{standalone: true}">
+                     [ngModelOptions]="{standalone: true}"
+                     #description="ngModel"
+                     maxlength=500
+                     required>
               <small id="courseDescription"
                      class="form-text text-muted">Put description</small>
+                     <span *ngIf="description.errors?.required" class="text-danger">This field is required</span>
             </div>
           </div>
           <div class="form-row">
@@ -39,8 +48,12 @@
                                    minView="minute"
                                    minuteStep="30"
                                    [(ngModel)]="this.courseItem.creationDate"
-                                   [ngModelOptions]="{standalone: true}">
+                                   [ngModelOptions]="{standalone: true}"
+                                   forbiddenDateValidator
+                                   #creationDate="ngModel"
+                                   required>
               </dl-date-time-picker>
+              <span *ngIf="creationDate.errors?.required" class="text-danger">This field is required</span>
             </div>
           </div>
           <div class="form-row">
@@ -51,7 +64,12 @@
                      placeholder="Enter Duration"
                      [(ngModel)]="this.courseItem.duration"
                      [ngModelOptions]="{standalone: true}"
-                     [textContent]="this.courseItem.duration | durationPipe">
+                     [textContent]="this.courseItem.duration | durationPipe"
+                     #duration="ngModel"
+                     numeric decimals="0"
+                     required
+                     >
+                     <span *ngIf="duration.errors?.required" class="text-danger">This field is required</span>
             </div>
           </div>
           <div class="form-row">
@@ -59,20 +77,27 @@
               <label for="courseAuthors">Authors</label>
               <input type="text"
                      placeholder="Enter Authors"
-                     class="form-control form-control-sm">
+                     class="form-control form-control-sm"
+                     [(ngModel)]="this.courseItem.authors"
+                     [ngModelOptions]="{standalone: true}"
+                     #authors="ngModel"
+                     required>
               <small id="courseAuthors"
                      class="form-text text-muted">Put Authors</small>
+              <span *ngIf="authors.errors?.required" class="text-danger">This field is required</span>
             </div>
           </div>
 
-          <div class="btn-group-toggle"
-               data-toggle="buttons">
-            <button type="submit"
-                    class="btn btn-secondary"
-                    (click)="saveCourseItem()">Save</button>
-            <button type="submit"
-                    class="btn btn-secondary"
-                    (click)="cancel()">Cancel</button>
+          <div *ngIf="!(authors.errors || title.errors || description.errors || creationDate.errors || duration.errors || authors.errors)">
+            <div class="btn-group-toggle"
+                data-toggle="buttons">
+              <button type="submit"
+                      class="btn btn-secondary"
+                      (click)="saveCourseItem()">Save</button>
+              <button type="submit"
+                      class="btn btn-secondary"
+                      (click)="cancel()">Cancel</button>
+            </div>
           </div>
         </fieldset>
       </form>

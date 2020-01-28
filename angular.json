@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angulartraining"
+    }
+  },
+  "defaultProject": "angulartraining",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
